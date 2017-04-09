@@ -1,0 +1,618 @@
+#!/bin/bash
+###############SOME STAT###################
+NORMAL=0
+SHARED=1
+STATIC=2
+SYS_LIBS_CACHE='/etc/ld.so.cache'
+#DEFAULT_INCLUDE_PATH=("/usr/include" "/usr/local/include")
+DEFAULT_INCLUDE_PATH=()
+DEFAULT_LIB_PATH=()
+#################SOME user define#######################
+APP_NAME='my_app'
+APP_INSTALL_PATH=''
+APP_STAT=${NORMAL}
+APP_DBG=0
+APP_COMPRESS=0
+APP_MULCORE=0
+CXX='gcc'
+FORM='40;35;1'
+#################SOME PATH#######################
+APP_ROOT=$(pwd)
+if [ ! -d ${APP_ROOT}/build ]; then
+	echo "No build dir find in your root dir!"
+	exit;
+fi
+MAKEFILE_BASE_PATH=${APP_ROOT}/build
+MAKEFILE_USER_PATH=${APP_ROOT}/build/user.comm
+MAKEFILE_COMM_PATH=${APP_ROOT}/build/makefile.comm
+MAKEFILE_SUB_PATH=${APP_ROOT}/build/makefile.sub
+MAKEFILE_OBJ_PATH=${APP_ROOT}/build/makefileobj
+# process command line options, shift Ïàµ±ÓÚ×óÒÆ,×ÔÈ»$#¾Í¼õ1
+while test $# -ge 1
+do
+case "$1" in
+    -h* | --help)
+      echo 'autobilder:' 
+      echo '  configure [--prefix=PREFIX] ' 
+      echo '  [--static or -t] [--shared or -s] [--verbose] [--compress] [--name or -n] [--compiler or -c]' 
+      echo '  --static   -t  :  compile to .a file in the lib! ' 
+      echo '  --shared   -s  :  compile to .so file in the lib! ' 
+      echo '  --verbose      :  display detail infos on compile command! ' 
+      echo '  --compress     :  compress "bin log conf lib" to a zip file! ' 
+      echo '  --perfix   -p  :  decide where you want to install! ' 
+      echo '  --name     -n  :  decide what name you want to define! ' 
+      echo '  --compiler -c  :  default is gcc, now only support:[gcc | clang | g++ | clang++], please don not use other compilser! ' 
+      echo '  --mulcore  -j  :  decide how many core you want to run! ' 
+      echo '  --form     -f  :  set echo style, form just like: foreground-color;background-color;action   '
+      echo '  				    default style is 40;35;1   ,if you want set form, please read define just as follow:'
+      echo '                    --background-color define:'
+      echo -e '					  40: black       -- \033[40m hello,world! \033[0m'
+      echo -e '					  41: dark red    -- \033[41m hello,world! \033[0m'
+      echo -e '					  42: green       -- \033[42m hello,world! \033[0m'
+      echo -e '					  43: yellow      -- \033[43m hello,world! \033[0m'
+      echo -e '					  44: blue        -- \033[44m hello,world! \033[0m'
+      echo -e '					  45: purple      -- \033[45m hello,world! \033[0m'
+      echo -e '					  46: dark green  -- \033[46m hello,world! \033[0m'
+      echo -e '					  47: white       -- \033[47m hello,world! \033[0m'
+      echo '                    --foreground-color define:'
+      echo -e '					  30: black       -- \033[30m hello,world! \033[0m'
+      echo -e '					  31: dark red    -- \033[31m hello,world! \033[0m'
+      echo -e '					  32: green       -- \033[32m hello,world! \033[0m'
+      echo -e '					  33: yellow      -- \033[33m hello,world! \033[0m'
+      echo -e '					  34: blue        -- \033[34m hello,world! \033[0m'
+      echo -e '					  35: purple      -- \033[35m hello,world! \033[0m'
+      echo -e '					  36: dark green  -- \033[36m hello,world! \033[0m'
+      echo -e '					  37: white       -- \033[37m hello,world! \033[0m'
+      echo '                    --action     define:'
+      echo -e '					  0: no action       -- \033[0m hello,world! \033[0m'
+      echo -e '					  1: high light      -- \033[1m hello,world! \033[0m'
+      echo -e '					  2: half high light -- \033[2m hello,world! \033[0m'
+      echo -e '					  4: underline       -- \033[4m hello,world! \033[0m'
+      echo -e '					  5: blink           -- \033[5m hello,world! \033[0m'
+      echo -e '					  7: reverse display -- \033[7m hello,world! \033[0m'
+      echo -e '					  8: hide background -- \033[8m hello,world! \033[0m'
+        exit 0 ;;
+    -p*=* | --prefix=*)                APP_INSTALL_PATH=`echo $1 | sed 's/.*=//'`; shift ;;
+    -n*=* | --name=*)                  APP_NAME=`echo $1 | sed 's/.*=//'`;shift ;;
+    -c*=* | --compiler=*)              CXX=`echo $1 | sed 's/.*=//'`;shift ;;
+    -f*=* | --form=*)                  FORM=`echo $1 | sed 's/.*=//'`;shift ;;
+    -j*=* | --mulcore=*)               APP_MULCORE=`echo $1 | sed 's/.*=//'`;shift ;;
+    -p* | --prefix)                    APP_INSTALL_PATH="$2"; shift; shift ;;
+    -n* | --name)                      APP_NAME="$2"; shift; shift ;;
+    -c* | --compiler)                  CXX="$2"; shift; shift ;;
+    -f* | --form)                      FORM="$2"; shift; shift ;;
+    -j* | --mulcore)                   APP_MULCORE="$2"; shift; shift ;;
+    -s* | --shared | --enable-shared)  APP_STAT=${SHARED}; shift ;;
+    -t* | --static)                    APP_STAT=${STATIC}; shift ;;
+    --verbose)                         APP_DBG=1; shift ;;
+    --compress)                        APP_COMPRESS=1; shift ;;
+    *)
+      echo "unknown option: $1" 
+      echo "$0 --help for help" 
+      exit ;;
+    esac
+done
+#APP_NAME="${APP_NAME}_$(date '+%Y%m%d%H')"
+#################SOME function#######################
+##
+# find .so or .a in /etc/ld.so.conf !
+##
+function find_etc_ldsoconf(){
+  base_so_paths=$(cat /etc/ld.so.conf | grep -E -v "include[ ]+.+")
+  deep_so_paths=$(cd /etc;cat $(cat /etc/ld.so.conf | grep -E "include[ ]+.+" | sed 's/include[ ]*//g') | grep -E -v "include[ ]+.+")
+  echo "${base_so_paths} ${deep_so_paths}"
+}
+
+DEFAULT_LIB_PATH=($(find_etc_ldsoconf))
+
+##
+# find default lib file by complier find !
+##
+function find_default_include_lib(){
+  complier=$1
+  ${complier} -print-search-dirs | sed -e 's/[a-z]\+:\s*=/:/g' -e 's/:/ /g'
+}
+
+function find_all_dir_in_src(){
+  path=$1
+  find ${path} -type d | grep -E -v "\.svn"
+}
+
+function find_all_file_in_src(){
+  path=$1
+  find ${path} -type f | grep -E ".+[h|c|cpp|cc]$"
+}
+
+function find_all_include_in_one_file(){
+  file_name=$1
+  cat ${file_name} | grep -E -o "[\/|\*]*#[\s]*include.+\.h[p]{0,2}" | grep -E -v "^\/" | grep -E -o "[a-zA-Z_][a-zA-Z0-9_-//]+.h[p]{0,2}"
+}
+
+
+###########################################
+echo -e "\033[40;32;1m Check if CONFIG args valid!\033[0m"
+
+echo -e "APP_NAME=${APP_NAME}"
+echo -e "APP_INSTALL_PATH=${APP_INSTALL_PATH}"
+echo -e "CXX=${CXX}"
+case "${CXX}" in
+    gcc|clang|g++|clang++)   ;;
+    *)
+      echo -e "\033[40;31;1m ERROR   : Unknown option for --compile or -c, this only support [gcc | clang]!!!\033[0m"
+      echo -e "\033[40;31;1m 	       Please configure --help or -h for help!!!\033[0m"
+      exit ;;
+    esac
+
+echo -e "FORM=${FORM}"
+case "${FORM}" in
+    4[0-7]\;3[0-7]\;[0124578])   ;;
+    *)
+      echo -e "\033[40;31;1m ERROR   : Unknown option for --form or -f, this support \"40~47;30~37;[0124578]\" !!!\033[0m"
+      echo -e "\033[40;31;1m 	       Please configure --help or -h for help!!!\033[0m"
+      exit ;;
+    esac
+
+echo -e "APP_STAT=${APP_STAT}"
+case "${APP_STAT}" in
+    [012])   ;;
+    *)
+      echo -e "\033[40;31;1m ERROR   : Unknown option for -s or -t, this support \"40~47;30~37;[0124578]\" !!!\033[0m"
+      echo -e "\033[40;31;1m 	       Please configure --help or -h for help!!!\033[0m"
+      exit ;;
+    esac
+
+echo -e "APP_DBG=${APP_DBG}"
+case "${APP_DBG}" in
+    [01])   ;;
+    *)
+      echo -e "\033[40;31;1m ERROR   : Unknown option for --verbose, this support \"40~47;30~37;[0124578]\" !!!\033[0m"
+      echo -e "\033[40;31;1m 	       Please configure --help or -h for help!!!\033[0m"
+      exit ;;
+    esac
+
+echo -e "APP_COMPRESS=${APP_COMPRESS}"
+case "${APP_DBG}" in
+    [01])   ;;
+    *)
+      echo -e "\033[40;31;1m ERROR   : Unknown option for --compress, this support \"40~47;30~37;[0124578]\" !!!\033[0m"
+      echo -e "\033[40;31;1m 	       Please configure --help or -h for help!!!\033[0m"
+      exit ;;
+    esac
+
+###########################################
+echo -e "\033[40;32;1m Check the Dirs!!\033[0m"
+if [ ! -d ${APP_ROOT}/src ]; then
+  echo -e "\033[40;31;1m ERROR   : No src dir find in your root dir!!!\033[0m"
+  exit;
+fi
+
+if [ ! -d ${APP_ROOT}/obj ]; then
+  mkdir -p ${APP_ROOT}/obj
+fi
+
+if [ ! -d ${APP_ROOT}/bin ]; then
+  mkdir -p ${APP_ROOT}/bin
+fi
+
+if [ ! -d ${APP_ROOT}/lib ]; then
+  mkdir -p ${APP_ROOT}/lib
+fi
+
+if [ ! -d ${APP_ROOT}/conf ]; then
+  mkdir -p ${APP_ROOT}/conf
+fi
+if [ ! -d ${APP_ROOT}/log ]; then
+  mkdir -p ${APP_ROOT}/log
+fi
+APP_SRC_PATH=${APP_ROOT}/src
+APP_OBJ_PATH=${APP_ROOT}/obj
+APP_BIN_PATH=${APP_ROOT}/bin
+APP_LIB_PATH=${APP_ROOT}/lib
+APP_CONF_PATH=${APP_ROOT}/conf
+APP_LOG_PATH=${APP_ROOT}/log
+
+VALID_SRC_DIRS=()
+APP_INCLUDE=()
+###################################
+########check lib is exist#########
+
+default_path=($(find_default_include_lib ${CXX}))
+default_path=($(awk -vRS=' ' '!a[$1]++' <<< ${default_path[@]}))
+
+for elem in ${default_path[@]}
+do
+  if [[ ${elem} =~ "/" ]]; then
+    if [[ ! ${elem} =~ ".+[bin|lib][/]{0,1}$" ]]; then
+      DEFAULT_INCLUDE_PATH=(${DEFAULT_INCLUDE_PATH[@]} ${elem})
+    fi
+    if [[ ! ${elem} =~ "/$" ]]; then
+    	DEFAULT_LIB_PATH=(${DEFAULT_LIB_PATH[@]} "${elem}/")
+    else
+    	DEFAULT_LIB_PATH=(${DEFAULT_LIB_PATH[@]} "${elem}")
+    fi
+  fi
+done
+
+raw_dirs=($(find_all_dir_in_src ${APP_SRC_PATH}))
+raw_files=($(find_all_file_in_src ${APP_SRC_PATH}))
+files=()
+
+for elem in ${raw_files[@]}
+do
+  files=(${files[@]} ${elem})
+done
+
+all_include_file=()
+for elem in ${files[@]}
+do
+  all_include_file=(${all_include_file[@]} $(find_all_include_in_one_file ${elem}))
+done
+
+#数组去重#
+all_include_file=($(awk -vRS=' ' '!a[$1]++' <<< ${all_include_file[@]}))
+
+##
+# 第一阶段：先在src目录下面检查所有头文件是否存在 
+##
+
+echo -e "\033[40;32;1m Check if include file whether exist in src !\033[0m"
+include_file_case_1=()
+for elem in ${all_include_file[@]}
+do
+  echo "check ${elem} ..."
+  file_name=${elem##*\/}
+  dir_path=${elem}
+  find ${APP_SRC_PATH} -name "${file_name}" | grep -E -q "[a-zA-Z0-9]+"
+  if [ $? -gt 0 ]; then
+    include_file_case_1=(${include_file_case_1[@]}  ${elem})
+  fi
+done
+
+##
+# 第二阶段：然后检查环境路径和编译器默认路径是否找到头文件
+##
+
+echo "phase 2: check include file whether exist in default_path !"
+include_file_case_2=()
+for elem in ${include_file_case_1[@]}
+do
+  echo "check ${elem} ..."
+  flag=0
+  for default_include_elem in ${DEFAULT_INCLUDE_PATH[@]}
+  do
+    if [[ -d ${default_include_elem} ]]; then
+      file_name=${elem##*\/}
+      match_path=$(find ${default_include_elem} -name "${file_name}")
+      if [[ ${match_path} =~ "${elem}" ]]; then
+        let flag+=1
+        break
+      fi
+#     echo -e "\tcheck ${elem} in ${default_include_elem}"
+    fi
+  done
+  if [ ${flag} -eq 0 ]; then
+    include_file_case_2=(${include_file_case_2[@]} ${elem})
+  fi
+done
+
+#####################################
+echo "phase 3: user prefix include file!"
+##
+# 第三阶段：找到各个头文件路径所在的路径，供用户选择
+##
+INCLUDE_ITEM=()
+for elem in ${include_file_case_2[@]}
+do
+  tmp_array=($(locate -r "/${elem}$"))
+  i=0
+  for item in ${tmp_array[@]}
+  do
+          echo -e "${i}\t\t${item}" 
+          let i+=1
+  done
+
+  read -p "input your choice: " choice
+
+  while true
+  do
+    if [ ${choice} -lt ${i} -a ${choice} -ge 0 ]; then
+            echo "success! you choice ${tmp_array[${choice}]}"
+      tmp=${tmp_array[${choice}]}
+      INCLUDE_ITEM=(${INCLUDE_ITEM[@]}  "-I${tmp%*/${elem}}")
+      break
+
+    else
+
+            echo "fail! please rechoice!"
+      read -p "input your choice: " choice
+    fi  
+  done
+done
+
+#####################################
+# 得到DLIBS_ITEM SLIBS_ITEM 和CFLAGS_ITEM
+DLIBS_ITEM=()
+SLIBS_ITEM=()
+
+CFLAGS_ITEM=($(cat ${MAKEFILE_USER_PATH} | grep -E "^[ ]*CFLAGS[ ]*=" | sed 's/.*=//g'))
+TMPDLIBS=($(cat ${MAKEFILE_USER_PATH} | grep -E "^[ ]*DLIBS[ ]*=" | sed 's/.*=//g'))
+TMPSPEDLIBS=($(cat ${MAKEFILE_USER_PATH} | grep -E "^[ ]*SPECIAL_DLIBS[ ]*=" | sed 's/.*=//g'))
+TMPSLIBS=($(cat ${MAKEFILE_USER_PATH} | grep -E "^[ ]*SLIBS[ ]*=" | sed 's/.*=//g'))
+
+echo "phase 4: user prefix .so file!"
+for elem in ${TMPDLIBS[@]}
+do
+  tmp_array=($(locate -r "/lib${elem}.so.*"))
+  i=0
+  for item in ${tmp_array[@]}
+  do
+          echo -e "${i}\t\t${item}" 
+          let i+=1
+  done
+
+  read -p "input your choice: " choice
+
+  while true
+  do
+    if [ ${choice} -lt ${i} -a ${choice} -ge 0 ]; then
+            echo "success! you choice ${tmp_array[${choice}]}"
+      tmp=${tmp_array[${choice}]}
+      tmp_path=${tmp%*lib${elem}.so*}
+      tmpi=0
+      for libpath in ${DEFAULT_LIB_PATH[@]}
+      do
+        if [[ ${tmp_path} == ${libpath} ]]; then
+          DLIBS_ITEM=("${DLIBS_ITEM[@]}"  "-l${elem}")
+          let tmpi=1
+          break
+        fi
+      done
+      if [ ${tmpi} -eq 0 ]; then
+        DLIBS_ITEM=("${DLIBS_ITEM[@]}"  "-L${tmp%*/lib${elem}.so*} -l${elem}")
+      fi
+      break
+
+    else
+
+            echo "fail! please rechoice!"
+      read -p "input your choice: " choice
+    fi  
+  done
+done
+
+for elem in ${TMPSPEDLIBS[@]}
+do
+  tmp_array=($(locate -r "/lib${elem}.so.*"))
+  i=0
+  for item in ${tmp_array[@]}
+  do
+          echo -e "${i}\t\t${item}" 
+          let i+=1
+  done
+
+  read -p "input your choice: " choice
+
+  while true
+  do
+    if [ ${choice} -lt ${i} -a ${choice} -ge 0 ]; then
+            echo "success! you choice ${tmp_array[${choice}]}"
+      tmp=${tmp_array[${choice}]}
+      tmp_path=${tmp%*/lib${elem}.so*}
+      DLIBS_ITEM=("${DLIBS_ITEM[@]}"  "-L${tmp_path} -l${elem} -Wl,-rpath,${tmp_path}")
+      break
+
+    else
+
+            echo "fail! please rechoice!"
+      read -p "input your choice: " choice
+    fi  
+  done
+done
+
+
+echo "phase 5: user prefix .a file!"
+for elem in ${TMPSLIBS[@]}
+do
+  tmp_array=($(locate -r "/lib${elem}.a$"))
+  i=0
+  for item in ${tmp_array[@]}
+  do
+          echo -e "${i}\t\t${item}" 
+          let i+=1
+  done
+
+  read -p "input your choice: " choice
+
+  while true
+  do
+    if [ ${choice} -lt ${i} -a ${choice} -ge 0 ]; then
+            echo "success! you choice ${tmp_array[${choice}]}"
+      tmp=${tmp_array[${choice}]}
+      SLIBS_ITEM=("${SLIBS_ITEM[@]}"  "${tmp}")
+      break
+
+    else
+
+            echo "fail! please rechoice!"
+      read -p "input your choice: " choice
+    fi  
+  done
+done
+
+#####################################
+# generate makefile.comm
+echo "#########################################################################################">${MAKEFILE_COMM_PATH}
+echo "#                                                                                       #">>${MAKEFILE_COMM_PATH}
+echo "#     #     #   #  ######   ###   ####    #   #    #     #       ####    #####    ####  #">>${MAKEFILE_COMM_PATH}
+echo "#    ##    #   #    #     #   #  #   #   #   #    #     #       #   #   #        #   #  #">>${MAKEFILE_COMM_PATH}
+echo "#   # #   #   #    #     #   #  ####    #   #    #     #       #   #   #####    ####    #">>${MAKEFILE_COMM_PATH}
+echo "#  ####  #   #    #     #   #  #   #   #   #    #     #       #   #   #        # #      #">>${MAKEFILE_COMM_PATH}
+echo "# #   #  ###     #      ###   ####     ###     #     ######  ####    #####    #   #     #">>${MAKEFILE_COMM_PATH}
+echo "#                                                                                       #">>${MAKEFILE_COMM_PATH}
+echo "#########################################################################################">>${MAKEFILE_COMM_PATH}
+
+echo -e "\n">>${MAKEFILE_COMM_PATH}
+
+echo "LIBS = ">>${MAKEFILE_COMM_PATH}
+echo -e "\n">>${MAKEFILE_COMM_PATH}
+echo "CFLAGS = ${CFLAGS_ITEM[@]}">>${MAKEFILE_COMM_PATH}
+echo -e "\n">>${MAKEFILE_COMM_PATH}
+
+#数组去重#
+INCLUDE_ITEM=($(awk -vRS=' ' '!a[$1]++' <<< ${INCLUDE_ITEM[@]}))
+INCLUDE_ITEM_SIZE=${#INCLUDE_ITEM[@]}
+let MAX_INDEX=INCLUDE_ITEM_SIZE-1
+for((index=0; index<${INCLUDE_ITEM_SIZE}; ++index))
+do
+  if [ ${index} -eq 0 ]; then
+    echo -e "INCLUDE = ${INCLUDE_ITEM[${index}]} \\">>${MAKEFILE_COMM_PATH}
+  elif [ ${index} -eq ${MAX_INDEX} ]; then
+    echo -e "\t${INCLUDE_ITEM[${index}]}">>${MAKEFILE_COMM_PATH}
+  else
+    echo -e "\t${INCLUDE_ITEM[${index}]}\t\\">>${MAKEFILE_COMM_PATH}
+  fi
+done
+echo -e "\n">>${MAKEFILE_COMM_PATH}
+
+SLIBS_ITEM_SIZE=${#SLIBS_ITEM[@]}
+let MAX_INDEX=SLIBS_ITEM_SIZE-1
+for((index=0; index<${SLIBS_ITEM_SIZE}; ++index))
+do
+  if [ ${index} -eq 0 ]; then
+    echo -e "SLIBS += ${SLIBS_ITEM[${index}]} \\">>${MAKEFILE_COMM_PATH}
+  elif [ ${index} -eq ${MAX_INDEX} ]; then
+    echo -e "\t${SLIBS_ITEM[${index}]}">>${MAKEFILE_COMM_PATH}
+  else
+    echo -e "\t${SLIBS_ITEM[${index}]}\t\\">>${MAKEFILE_COMM_PATH}
+  fi
+done
+echo -e "\n">>${MAKEFILE_COMM_PATH}
+
+DLIBS_ITEM_SIZE=${#DLIBS_ITEM[@]}
+let MAX_INDEX=DLIBS_ITEM_SIZE-1
+for((index=0; index<${DLIBS_ITEM_SIZE}; ++index))
+do
+  if [ ${index} -eq 0 ]; then
+    echo -e "DLIBS += ${DLIBS_ITEM[${index}]} \\">>${MAKEFILE_COMM_PATH}
+  elif [ ${index} -eq ${MAX_INDEX} ]; then
+    echo -e "\t${DLIBS_ITEM[${index}]}">>${MAKEFILE_COMM_PATH}
+  else
+    echo -e "\t${DLIBS_ITEM[${index}]}\t\\">>${MAKEFILE_COMM_PATH}
+  fi
+done
+echo -e "\n">>${MAKEFILE_COMM_PATH}
+
+echo -e "LIBS += \$(SLIBS)">>${MAKEFILE_COMM_PATH}
+echo -e "LIBS += \$(DLIBS)">>${MAKEFILE_COMM_PATH}
+chmod 755 ${MAKEFILE_COMM_PATH}
+#####################################
+
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+############cp makefile.sub to sub_dirs#################
+echo -e "\033[40;32;1m Distribute makefile.sub!!\033[0m"
+ALL_SRC_DIRS=($(find ${APP_SRC_PATH} -type d -name '[a-z]*' -print))
+
+for elem in ${ALL_SRC_DIRS[@]}
+do
+	echo ${elem} | grep -q '[.]' 
+	if [ $? -gt 0 ]; then
+		ls ${elem} | grep -q '.[h|cpp|cc|c]$'
+		if [ $? -eq 0 ]; then
+			if [ -f ${elem}/makefile.sub ]; then
+				diff ${elem}/makefile.sub ${MAKEFILE_SUB_PATH}
+				if [ $? -gt 0 ]; then	
+					cp ${MAKEFILE_SUB_PATH} ${elem}/makefile.sub
+				fi
+			else
+				cp ${MAKEFILE_SUB_PATH} ${elem}/makefile.sub
+			fi
+			VALID_SRC_DIRS=(${VALID_SRC_DIRS[@]} ${elem})
+		fi
+	fi	
+done
+
+APP_ROOT_IS_EXIST_IN_INCLUDE=0
+APP_SRC_PATH_IS_EXIST_IN_INCLUDE=0
+for elem in ${VALID_SRC_DIRS[@]}
+do
+	APP_INCLUDE=(${APP_INCLUDE[@]} "-I${elem}")
+	if [ ${elem} == ${APP_ROOT} ]; then
+		APP_ROOT_IS_EXIST_IN_INCLUDE=1
+	fi
+	if [ ${elem} == ${APP_SRC_PATH} ]; then
+		APP_SRC_PATH_IS_EXIST_IN_INCLUDE=1
+	fi
+done
+if [ ${APP_ROOT_IS_EXIST_IN_INCLUDE} -eq 0 ]; then
+	APP_INCLUDE=(${APP_INCLUDE[@]} "-I${APP_ROOT}")
+fi
+if [ ${APP_SRC_PATH_IS_EXIST_IN_INCLUDE} -eq 0 ]; then
+	APP_INCLUDE=(${APP_INCLUDE[@]} "-I${APP_SRC_PATH}")
+fi
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+echo -e "\033[40;32;1m Generate makefile!!\033[0m"
+########################generate makefile################################
+echo "APP_INCLUDE=${APP_INCLUDE[@]}" > ${APP_ROOT}/makefile
+echo -e "APP_DATE\t:=\$(shell date '+%Y%m%d%H')" >> ${APP_ROOT}/makefile
+####################<<ALL>>############################
+echo "all:" >> ${APP_ROOT}/makefile
+
+for elem in ${VALID_SRC_DIRS[@]}
+do
+        echo ${elem} | grep -q '[.]'
+        if [ $? -gt 0 ]; then
+                obj_cmd="\t @cd ${elem}; make -f makefile.sub MAKEFILE_COMM_PATH=\"${MAKEFILE_COMM_PATH}\" APP_OBJ_PATH=\"${APP_OBJ_PATH}\" APP_DBG=${APP_DBG} CXX=\"${CXX}\" FORM=\"${FORM}\" APP_INCLUDE=\"\${APP_INCLUDE}\""
+                if [ ${APP_MULCORE} -gt 0 ]; then
+                        obj_cmd="${obj_cmd} -j${APP_MULCORE}"
+                fi
+                if [ ${APP_DBG} -eq 0 ]; then
+                        obj_cmd="${obj_cmd} -s"
+                fi
+
+                echo -e ${obj_cmd}>>${APP_ROOT}/makefile
+        fi
+done
+
+ld_cmd="\t @cd ${MAKEFILE_BASE_PATH}; make -f makefileobj MAKEFILE_COMM_PATH=\"${MAKEFILE_COMM_PATH}\" APP_OBJ_PATH=\"${APP_OBJ_PATH}\" APP_DBG=${APP_DBG} CXX=\"${CXX}\" FORM=\"${FORM}\" APP_TARGET=\"${APP_BIN_PATH}/${APP_NAME}\""
+if [ ${APP_DBG} -eq 0 ]; then
+        ld_cmd="${ld_cmd} -s"
+fi
+
+echo -e ${ld_cmd}>>${APP_ROOT}/makefile
+#########################<<clean>>##############################
+
+echo "clean:" >> ${APP_ROOT}/makefile
+echo -e "\t rm -f ${APP_ROOT}/obj/*" >>${APP_ROOT}/makefile
+
+#########################<<distclean>>##############################
+echo "distclean:" >> ${APP_ROOT}/makefile
+for elem in ${VALID_SRC_DIRS[@]}
+do
+	echo -e "\t rm -f ${elem}/makefile.sub" >>${APP_ROOT}/makefile
+done
+echo -e "\t rm -f ${APP_ROOT}/bin/* ${APP_ROOT}/obj/*" >>${APP_ROOT}/makefile
+echo -e "\t rm -f ${APP_ROOT}/makefile" >>${APP_ROOT}/makefile
+
+#########################<<install>>##############################
+echo "install:" >> ${APP_ROOT}/makefile
+echo -e "\t mv ${APP_BIN_PATH}/${APP_NAME} ${APP_BIN_PATH}/${APP_NAME}_\${APP_DATE}">>${APP_ROOT}/makefile
+echo -e "\t echo \"./${APP_NAME}_\${APP_DATE} daemon\">${APP_BIN_PATH}/start.sh">>${APP_ROOT}/makefile
+echo -e "\t echo \"killall -9 ${APP_NAME}_\${APP_DATE}\">${APP_BIN_PATH}/stop.sh">>${APP_ROOT}/makefile
+echo -e "\t echo \"./stop.sh;sleep 1;./start.sh\">${APP_BIN_PATH}/restart.sh">>${APP_ROOT}/makefile
+echo -e "\t chmod +x ${APP_BIN_PATH}/*.sh">>${APP_ROOT}/makefile
+if [ ! -z ${APP_INSTALL_PATH} ]; then
+	APP_INSTALL_PATH="$(echo "${APP_INSTALL_PATH}" | sed -e 's/\/$//')"
+	APP_INSTALL_PATH="${APP_INSTALL_PATH}/${APP_ROOT##*/}"
+	echo -e "\t mkdir -p ${APP_INSTALL_PATH} ">>${APP_ROOT}/makefile
+	echo -e "\t cp -r ${APP_BIN_PATH} ${APP_LIB_PATH} ${APP_CONF_PATH} ${APP_LOG_PATH} ${APP_INSTALL_PATH}">>${APP_ROOT}/makefile
+fi
+if [ 1 -eq ${APP_COMPRESS} ]; then
+	echo -e "\t zip -r "$(echo "${APP_ROOT}" | sed -e 's/.*\///').zip" conf bin lib log">>${APP_ROOT}/makefile
+fi
+
+#echo -e "\t cd ${APP_ROOT};cd ..">>${APP_ROOT}/makefile
+#echo -e "\t zip -r ${APP_ROOT}">>${APP_ROOT}/makefile
+
+#########################<<add x for makefile>>##############################
+chmod +x ${APP_ROOT}/makefile
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#

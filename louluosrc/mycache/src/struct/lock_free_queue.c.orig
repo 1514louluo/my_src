@@ -1,0 +1,14 @@
+#include "lock_free_queue.h"
+
+ void lf_queue_init (lf_queue_head *lf_qhead);
+
+ void lf_queue_node_init (lf_queue_node *lf_qnode, int to_be_freed) ;
+
+ void lf_queue_node_free (lf_queue_node *lf_qnode) ;
+
+ void lf_queue_enqueue (lf_queue_head *lf_qhead, lf_queue_node *lf_qnode) ;
+
+ lf_queue_node* lf_queue_dequeue (lf_queue_head *lf_qhead) ;
+
+
+

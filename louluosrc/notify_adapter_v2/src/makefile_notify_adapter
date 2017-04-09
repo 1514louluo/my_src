@@ -1,0 +1,23 @@
+all:
+	#cd command;make;cd ..
+	cd common;make;cd ..
+	cd service;make;cd ..
+	cd test;make;cd ..
+	cd client;make;cd ..
+	cd main;make;cd ..
+
+install:
+	cd command;make install;cd ..
+	cd common;make install;cd ..
+	cd main;make install;cd ..
+	cd thread;make install;cd ..
+	cd task;make install;cd ..
+	cd packet;make install;cd ..;cd thrift;make install;cd ..
+clean:
+	make -f makefileobj clean;
+	cd command;make clean;cd ..
+	cd common;make clean;cd ..
+	cd main;make clean;cd ..
+	cd thread;make clean;cd ..
+	cd task;make clean;cd ..
+	cd packet;make clean;cd ..;cd thrift;make clean;cd ..

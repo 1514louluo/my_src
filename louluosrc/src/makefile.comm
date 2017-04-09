@@ -1,0 +1,29 @@
+#PATH_LOG4CPLUS		= /usr/local/log4cplus-1.0.4-rc6
+
+INC_MYSQL 		= -I/usr/include/mysql
+
+MYSQL_LIB		= -L/usr/lib/x86_64-linux-gnu -lmysqlclient_r
+LIB_BOOST       =  -L/usr/local/lib  -lboost_thread
+
+INCLUDE=-I${SERVER_ROOT}/src \
+	-I${SERVER_ROOT}/src/common \
+	-I${SERVER_ROOT}/src/main \
+	-I${SERVER_ROOT}/src/test \
+	-I${SERVER_ROOT}/src/service \
+	$(INC_MYSQL) \
+	-I/usr/include/c++/4.7/  \
+	-I/usr/local/curl-7.31.0/include   \
+
+
+
+
+LIBS=  -L/usr/local/curl-7.31.0/lib -lcurl \
+	$(MYSQL_LIB) \
+	$(LIB_BOOST) \
+	-L/usr/local/lib -liconv \
+	/usr/local/lib/liblog4cplus.a -lrt\
+	-lbz2 -lm -lc -lz -lrt -lpthread -lssl -lrt -lcrypto -luuid  -lc++\
+
+CFLAGS = -g -w -O3 -D_REENTRANT -DLOGGER  -D_DEBUG -D__USE_EPOLL -D__LINUX__  -D_UNIX  
+
+CXX=clang

@@ -1,0 +1,13 @@
+include $(SERVER_ROOT)/src/makefile.comm
+
+TARGET=$(SERVER_ROOT)/bin/${SERVER_NAME}
+
+
+OBJ=$(wildcard ${SERVER_ROOT}/obj/*.o)
+OBJ_PLATFORM=$()
+
+$(TARGET):$(OBJ)
+	$(CXX) -g -o  $@ $(OBJ) ${LIBS}
+clean:
+	rm -f $(TARGET)
+

@@ -1,0 +1,22 @@
+################################################
+#  You shold modify this file, as follow rule: #
+################################################ 
+
+# cflags is param for you gcc command, for example: -g -D and so on
+# CFLAGS=-g 
+CFLAGS  = -O3 -g -D_DBG
+
+# dlibs is .so path for you gcc command, for example: -L/xx/xx -lxx, so you shold write like 'libcurl.so=>curl'
+# DLIBS=curl
+
+DLIBS= memcached ssl
+
+# slibs is .a path for you gcc command, for example: /xx/xx.a, so you shold write like 'curl.a=>curl'
+# SLIBS=curl
+
+SLIBS = log4cplus event
+
+
+# slibs is .so path for you gcc command, for example: -L/xx/xx -lxx, -Wl,-rpath,/xx/xx, so you shold write like 'libcurl.so=>curl'
+# SPECIAL_DLIBS=curl
+SPECIAL_DLIBS = curl 

@@ -1,0 +1,44 @@
+INFO - 2014-04-14 08:58:44,190 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 09:12:51,754 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 09:13:43,269 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 09:15:51,655 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 09:15:54,939 - /boxserver/tips/general/conf/update?   RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 09:16:01,139 - /boxserver/tips/general/conf/update?   RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 09:18:56,307 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 09:18:59,271 - /boxserver/tips/general/handle?   RESPONSE---> [{"content": {}, "result": "2", "errinfo": "参数错误"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 09:20:02,998 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 09:20:06,028 - /boxserver/tips/general/handle?business=323   RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 09:26:11,148 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 09:26:13,507 - /boxserver/tips/general/handle?business=323   RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:12:42,000 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:12:46,292 - /boxserver/tips/general/handle?business=323   RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:12:48,658 - /boxserver/tips/general/conf/update?   RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:12:50,490 - /boxserver/tips/general/conf/update?   RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:12:52,067 - /boxserver/tips/general/handle?business=323   RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:12:53,761 - /boxserver/tips/general/conf/update?   RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:15:41,794 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:16:51,946 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:16:54,795 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:17:08,085 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:27:07,153 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:39:13,908 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:39:18,587 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:41:16,495 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:41:19,337 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:43:49,285 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:43:52,052 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:44:42,300 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:44:49,002 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:45:45,575 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:47:43,401 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:47:46,280 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 10:58:34,991 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 10:58:47,901 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 11:03:38,524 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 11:03:46,333 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 11:10:51,389 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 11:10:58,938 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "2", "errinfo": "参数错误"}, {"content": {}, "result": "2", "errinfo": "参数错误"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:84, produce_result] -
+INFO - 2014-04-14 11:16:05,289 - <===============service begin!!!=================> [general_tips.py:41, <module>] -
+INFO - 2014-04-14 11:16:13,161 - /boxserver/tips/general/handle?business=box_login   RESPONSE---> [{"content": {}, "result": "2", "errinfo": "参数错误"}, {"content": {}, "result": "10", "errinfo": "访问平台url出错"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:86, produce_result] -
+INFO - 2014-04-14 11:17:09,650 - /boxserver/tips/general/handle?business=box_login&callback=fsddsf   RESPONSE---> fsddsf([{"content": {}, "result": "2", "errinfo": "参数错误"}, {"content": {}, "result": "10", "errinfo": "访问平台url出错"}])[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:86, produce_result] -
+INFO - 2014-04-14 12:34:02,934 - <===============service begin!!!=================> [general_tips.py:41, <module>] -

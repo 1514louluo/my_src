@@ -1,0 +1,13 @@
+include makefile.comm
+
+TARGET=$(SERVER_ROOT)/bin/${SERVER_NAME}
+
+
+OBJ=$(wildcard ${SERVER_ROOT}/obj/*.o)
+OBJ_PLATFORM=$()
+
+$(TARGET):$(OBJ)
+	$(CXX) -ggdb -o  $@ $(OBJ) ${LIBS}
+clean:
+	rm -f $(TARGET)
+

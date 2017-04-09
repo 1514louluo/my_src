@@ -1,0 +1,166 @@
+INFO - 2014-04-14 08:58:44,190 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 09:12:51,752 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 09:13:43,268 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 09:14:58,249 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:113, process_conf_update] -
+INFO - 2014-04-14 09:15:51,654 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 09:15:54,937 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:113, process_conf_update] -
+INFO - 2014-04-14 09:15:54,938 -    RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 09:16:01,137 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:113, process_conf_update] -
+INFO - 2014-04-14 09:16:01,138 -    RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 09:16:27,622 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 09:16:27,623 - param error !!! [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:128, process_general_tips] -
+INFO - 2014-04-14 09:18:56,306 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 09:18:59,268 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 09:18:59,269 - param error !!! [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:129, process_general_tips] -
+INFO - 2014-04-14 09:18:59,270 -    RESPONSE---> [{"content": {}, "result": "2", "errinfo": "参数错误"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 09:19:15,923 - get one request! request = business=323[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+INFO - 2014-04-14 09:20:02,996 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 09:20:06,025 - get one request! request = business=323[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 09:20:06,026 - no found business id!!! [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:142, process_general_tips] -
+INFO - 2014-04-14 09:20:06,027 -    RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 09:26:11,146 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 09:26:13,504 - get one request! request = business=323[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 09:26:13,505 - no found business id!!! [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:142, process_general_tips] -
+INFO - 2014-04-14 09:26:13,506 -    RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:11:21,184 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:113, process_conf_update] -
+INFO - 2014-04-14 10:12:41,998 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:12:46,291 - get one request! request = business=323[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:12:46,292 - no found business id!!! [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:142, process_general_tips] -
+INFO - 2014-04-14 10:12:46,292 -    RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:12:48,657 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:113, process_conf_update] -
+INFO - 2014-04-14 10:12:48,658 -    RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:12:50,489 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:113, process_conf_update] -
+INFO - 2014-04-14 10:12:50,490 -    RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:12:52,067 - get one request! request = business=323[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:12:52,067 - no found business id!!! [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:142, process_general_tips] -
+INFO - 2014-04-14 10:12:52,067 -    RESPONSE---> [{"content": {}, "result": "11", "errinfo": "没有找到业务号"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:12:53,761 - get one request! request = [/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:113, process_conf_update] -
+INFO - 2014-04-14 10:12:53,761 -    RESPONSE---> {"result": "1"}[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:13:12,086 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:13:12,086 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:160, process_general_tips] -
+INFO - 2014-04-14 10:15:41,793 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:15:45,759 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:15:45,760 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:160, process_general_tips] -
+ERROR - 2014-04-14 10:15:45,761 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:188, process_general_tips] -
+INFO - 2014-04-14 10:16:51,944 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:16:54,789 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:16:54,790 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:160, process_general_tips] -
+ERROR - 2014-04-14 10:16:54,791 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:188, process_general_tips] -
+ERROR - 2014-04-14 10:16:54,792 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:231, process_general_tips] -
+ERROR - 2014-04-14 10:16:54,793 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:277, process_general_tips] -
+ERROR - 2014-04-14 10:16:54,794 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:305, process_general_tips] -
+INFO - 2014-04-14 10:16:54,795 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:17:08,084 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:17:08,084 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:160, process_general_tips] -
+ERROR - 2014-04-14 10:17:08,084 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:188, process_general_tips] -
+ERROR - 2014-04-14 10:17:08,085 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:231, process_general_tips] -
+ERROR - 2014-04-14 10:17:08,085 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:277, process_general_tips] -
+ERROR - 2014-04-14 10:17:08,085 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:305, process_general_tips] -
+INFO - 2014-04-14 10:17:08,085 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:27:07,152 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:27:07,153 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:160, process_general_tips] -
+ERROR - 2014-04-14 10:27:07,153 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:188, process_general_tips] -
+ERROR - 2014-04-14 10:27:07,153 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:231, process_general_tips] -
+ERROR - 2014-04-14 10:27:07,153 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:277, process_general_tips] -
+ERROR - 2014-04-14 10:27:07,153 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:305, process_general_tips] -
+INFO - 2014-04-14 10:27:07,153 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:39:13,907 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:39:18,582 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:39:18,583 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:161, process_general_tips] -
+ERROR - 2014-04-14 10:39:18,584 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:190, process_general_tips] -
+ERROR - 2014-04-14 10:39:18,585 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:234, process_general_tips] -
+ERROR - 2014-04-14 10:39:18,586 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:281, process_general_tips] -
+ERROR - 2014-04-14 10:39:18,587 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:310, process_general_tips] -
+INFO - 2014-04-14 10:39:18,587 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:41:16,494 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:41:19,166 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,167 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:161, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,169 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:190, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,170 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:234, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,172 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:281, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,173 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:310, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,174 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:161, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,175 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:190, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,333 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:258, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,334 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:281, process_general_tips] -
+ERROR - 2014-04-14 10:41:19,335 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:327, process_general_tips] -
+INFO - 2014-04-14 10:41:19,336 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:43:49,283 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:43:51,951 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:43:51,952 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:43:51,954 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:191, process_general_tips] -
+ERROR - 2014-04-14 10:43:51,956 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:235, process_general_tips] -
+ERROR - 2014-04-14 10:43:51,958 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:43:51,959 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:311, process_general_tips] -
+ERROR - 2014-04-14 10:43:51,960 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:43:51,960 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:191, process_general_tips] -
+ERROR - 2014-04-14 10:43:52,051 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:259, process_general_tips] -
+ERROR - 2014-04-14 10:43:52,052 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:43:52,052 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:328, process_general_tips] -
+INFO - 2014-04-14 10:43:52,052 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:44:42,299 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:44:48,888 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,889 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,891 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:191, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,893 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:235, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,895 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,896 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:311, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,898 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,899 - wrong config!!! no found unrestrict tag of scene in unrestrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:191, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,998 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:259, process_general_tips] -
+ERROR - 2014-04-14 10:44:48,999 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:44:49,000 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:328, process_general_tips] -
+INFO - 2014-04-14 10:44:49,001 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:45:45,573 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:45:48,373 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:45:48,374 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+INFO - 2014-04-14 10:47:43,399 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:47:46,169 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,170 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,172 - bad request!!! no found uid! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:198, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,174 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:235, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,175 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,176 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:311, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,177 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,178 - bad request!!! no found uid! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:198, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,276 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:259, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,277 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:47:46,278 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:328, process_general_tips] -
+INFO - 2014-04-14 10:47:46,279 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 10:58:34,990 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 10:58:47,741 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,741 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,743 - bad request!!! no found uid! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:198, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,744 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:235, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,745 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,747 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:311, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,748 - wrong config!!! no found restrict tag of scene in restrict cond table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:162, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,751 - bad request!!! no found uid! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:198, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,897 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:259, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,898 - wrong config!!! no found fixed rtn tag of scene in fixed rtn table! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:282, process_general_tips] -
+ERROR - 2014-04-14 10:58:47,899 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:328, process_general_tips] -
+INFO - 2014-04-14 10:58:47,900 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 11:03:38,523 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 11:03:46,232 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 11:03:46,232 - bad request!!! no found uid! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:202, process_general_tips] -
+ERROR - 2014-04-14 11:03:46,233 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:241, process_general_tips] -
+ERROR - 2014-04-14 11:03:46,235 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:321, process_general_tips] -
+ERROR - 2014-04-14 11:03:46,236 - bad request!!! no found uid! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:202, process_general_tips] -
+ERROR - 2014-04-14 11:03:46,331 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:265, process_general_tips] -
+ERROR - 2014-04-14 11:03:46,331 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:338, process_general_tips] -
+INFO - 2014-04-14 11:03:46,332 -    RESPONSE---> [{"content": {}, "result": "1", "errinfo": "ok"}, {"content": {}, "result": "1", "errinfo": "ok"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 11:10:51,388 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 11:10:58,933 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 11:10:58,933 - bad request!!! no found uid! with scene = 1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:202, process_general_tips] -
+ERROR - 2014-04-14 11:10:58,934 - bad request!!! no found uid! with scene = 2[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:202, process_general_tips] -
+INFO - 2014-04-14 11:10:58,936 -    RESPONSE---> [{"content": {}, "result": "2", "errinfo": "参数错误"}, {"content": {}, "result": "2", "errinfo": "参数错误"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:81, produce_result] -
+INFO - 2014-04-14 11:16:05,288 - <===============service begin!!!=================> [general_tips.py:40, <module>] -
+INFO - 2014-04-14 11:16:13,021 - get one request! request = business=box_login[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 11:16:13,021 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:243, process_general_tips] -
+ERROR - 2014-04-14 11:16:13,157 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:267, process_general_tips] -
+INFO - 2014-04-14 11:16:13,158 -    RESPONSE---> [{"content": {}, "result": "2", "errinfo": "参数错误"}, {"content": {}, "result": "10", "errinfo": "访问平台url出错"}][/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:83, produce_result] -
+INFO - 2014-04-14 11:17:09,556 - get one request! request = business=box_login&callback=fsddsf[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:123, process_general_tips] -
+ERROR - 2014-04-14 11:17:09,557 - visit wrong http request, bad pargam![/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:243, process_general_tips] -
+ERROR - 2014-04-14 11:17:09,649 - visit niuxgoldcoupon url error!!! overdue = -1[/home/louluo/nfs/my_svn/python_projects/src/service/tips_handler.py:267, process_general_tips] -
+INFO - 2014-04-14 11:17:09,649 -    RESPONSE---> fsddsf([{"content": {}, "result": "2", "errinfo": "参数错误"}, {"content": {}, "result": "10", "errinfo": "访问平台url出错"}])[/home/louluo/nfs/my_svn/python_projects/src/service/service_common.py:83, produce_result] -
+INFO - 2014-04-14 12:34:02,932 - <===============service begin!!!=================> [general_tips.py:40, <module>] -

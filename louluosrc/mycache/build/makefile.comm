@@ -1,0 +1,22 @@
+#######################need not to modify!################
+INCLUDE=
+CFLAGS = -g -D_REENTRANT -D__USE_EPOLL -D__LINUX__ -D_UNIX  
+LIBS=
+#......shared lib........#
+DLIBS=
+#......static lib........#
+SLIBS=
+
+#<<<<<<<<<#################just for user define!!##################>>>>>>>>>>>>>>>>#
+
+INCLUDE+= -I/usr/local/zlog/include \
+
+DLIBS+=-lpthread                      \
+    
+SLIBS+= /usr/local/zlog/lib/libzlog.a  \
+
+CFLAGS+=-MD 
+
+#<<<<<<<<<<<<<<#####################don not modify###################################>>>>>>>>>>>>>#
+LIBS+=$(SLIBS)
+LIBS+=$(DLIBS)

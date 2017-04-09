@@ -1,0 +1,72 @@
+PATH_FRAMEWORK		= /usr/local/xunlei_community/comm/framework_1.5_for_online_viewer
+PATH_LOG4CPLUS		= /usr/local/log4cplus-1.0.4-rc6
+#PATH_XPDF	= /usr/local/xpdf-3.03
+
+INC_MYSQL 		= -I/usr/local/mysql/include
+#INC_MAGICK		= -I/usr/local/include/ImageMagick
+#INC_XPDF		= -I$(PATH_XPDF) -I$(PATH_XPDF)/goo -I$(PATH_XPDF)/splash -I$(PATH_XPDF)/xpdf
+
+MYSQL_LIB		= -L/usr/local/mysql/lib -lmysqlclient_r  -lz -luuid -lpthread -lssl
+#LIB_XDRIVE = -L/usr/local/xunlei_community/xdrive_client -lfilestreamer -lpthread -lxdrive_common 
+#LIB_XSOCKET    = -L/usr/local/xunlei_community/comm/xsocket_framework/ -lgcexsocket -lxthread -lappframe
+#LIB_GFSCLIENT   = -L/usr/local/lib -lgfsclient
+#LIB_GFSCLIENT  = /data0/knose/xl_filetranscode/maintain/doc2pdf_server/lib/libgfsclient.a
+#LIB_XBASE       = /usr/local/lib/libxbase.a
+LIB_BOOST       =  -L/usr/lib  -lboost_thread
+#LIB_BOOST       =  -L/usr/local/lib/libboost_system.a -lboost_thread  -lboost_serialization
+#LIB_BOOST_STATIC   = /usr/local/lib/libboost_serialization-gcc41-mt-1_37.a
+#LIB_BOOST_146   =  /usr/local/lib/libboost_serialization.a
+#LIB_MAGICK		= -L/usr/local/lib -L/usr/local/lib -lMagick++ -lMagickWand -lMagickCore -lfreetype -ljpeg -lpng -lbz2 -lz -lm -lgomp
+#LIB_MAGICK		= /usr/local/lib/libMagick++.a /usr/local/lib/libMagickWand.a /usr/local/lib/libMagickCore.a /usr/local/lib/libfreetype.a /usr/local/lib/libjpeg.a /usr/local/lib/libpng.a  -lbz2 -lz -lm -lgomp
+#LIB_TC			= /usr/local/lib/libtokyocabinet.a
+#LIB_XPDF		= $(PATH_XPDF)/lib/libmyxpdf.a $(PATH_XPDF)/goo/libGoo.a $(PATH_XPDF)/splash/libsplash.a $(PATH_XPDF)/fofi/libfofi.a
+#LIB_LIBEVENT    = -L/usr/local/libevent2.0.15/lib -levent -levent_core
+LIB_LIBEVENT    = /usr/local/libevent-2.0.19/lib/libevent.a  /usr/local/libevent-2.0.19/lib/libevent_core.a
+#XL_LIB          = /usr/local/lib/libxl_lib.a
+#LIB_MEMCACHED_CLIENT = /usr/local/lib/libmemcached.a
+LIB_MEMCACHED_CLIENT_SHARED = -L/usr/local/lib -lmemcached
+#LIB_LIBCURL = /usr/lib/libcurl.a
+LIB_LIBCURL = -L/usr/lib64  -lcurl
+LIB_REDIS   = /usr/local/lib/libhiredis.a
+#-L/usr/local/lib -lboost_system -lboost_thread
+OPENSSLPATH=/usr/include/openssl
+LIB_ZEROMQ  = /usr/local/zeromq-3.2.2/lib/libzmq.a
+
+ZEROMQ_INC=/usr/local/zeromq-3.2.2/include
+
+MONGODB_INC=/usr/local/mongo_client_lib/include
+#MONGODB_LIB=/usr/local/mongo_client_lib/lib64/libmongoclient.a  /opt/mongodb-src-r2.2.2/build/linux2/normal/third_party/boost/libboost_filesystem.a /opt/mongodb-src-r2.2.2/build/linux2/normal/third_party/boost/libboost_thread.a /opt/mongodb-src-r2.2.2/build/linux2/normal/third_party/boost/libboost_program_options.a /opt/mongodb-src-r2.2.2/build/linux2/normal/third_party/boost/libboost_system.a
+INCLUDE=-I${SERVER_ROOT}/src \
+	-I${SERVER_ROOT}/src/common \
+	-I${SERVER_ROOT}/src/main \
+	-I${SERVER_ROOT}/src/test \
+	-I${SERVER_ROOT}/src/service \
+	-I${SERVER_ROOT}/src/client \
+	-I/usr/include/openssl \
+    $(INC_MYSQL) \
+    -I/usr/local/libevent2.0.15/include  \
+	-I/usr/local/include \
+	-I/usr/local/include/boost-1_36  \
+    -I$(PATH_LOG4CPLUS)/include/log4cplus \
+    -I$(MONGODB_INC)  \
+    -I$(ZEROMQ_INC)   \
+    
+
+
+LIBS=  $(LIB_LIBEVENT) \
+      $(XL_LIB)   \
+      $(LIB_MEMCACHED_CLIENT_SHARED)  \
+      $(LIB_LIBCURL)   \
+      $(LIB_REDIS)     \
+	/usr/local/lib/liblog4cplus.a \
+	-L/usr/local/mysql/lib/ \
+	-lstdc++ -lrt -lcrypto -lmysqlclient_r -luuid \
+    $(LIB_BOOST_STATIC)  $(LIB_BOOST) \
+    -lstdc++ -lrt -lbz2 -lpthread -lmysqlclient_r -lz -luuid -lz -lbz2 -lrt -lm -lc  \
+    -L/usr/local/lib/ -liconv \
+    $(MONGODB_LIB) \
+    $(LIB_ZEROMQ)  \
+ #   /usr/local/lib/libiconv.a  \
+	
+CFLAGS = -ggdb -Wall -D_REENTRANT -DLOGGER  -D_DEBUG -D__USE_EPOLL -D__LINUX__  -D_UNIX  
+
